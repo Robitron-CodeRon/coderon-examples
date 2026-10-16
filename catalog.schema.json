@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coderon:examples:catalog:1",
+  "title": "CodeRon örnek kataloğu taslağı",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "difficulty": {
+            "enum": [
+              "beginner",
+              "intermediate",
+              "advanced"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+          },
+          "language": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "general",
+              "hardware"
+            ]
+          },
+          "compatibleBoards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status": {
+                  "enum": [
+                    "unverified",
+                    "verified",
+                    "incompatible"
+                  ]
+                },
+                "notes": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "status",
+                "notes"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true
+          },
+          "hardware": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "quantity": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "notes": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "notes"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true
+          },
+          "libraries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "versionRange": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "name",
+                "versionRange"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true
+          },
+          "coderon": {
+            "type": "object",
+            "properties": {
+              "requirements": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "platform": {
+                      "enum": [
+                        "pc",
+                        "android"
+                      ]
+                    },
+                    "versionRange": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "platform",
+                    "versionRange"
+                  ],
+                  "additionalProperties": false
+                },
+                "uniqueItems": true
+              },
+              "support": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "boardId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "platform": {
+                      "enum": [
+                        "pc",
+                        "android"
+                      ]
+                    },
+                    "coderonVersionRange": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "compile": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "unverified",
+                            "passed",
+                            "failed",
+                            "not-applicable"
+                          ]
+                        },
+                        "details": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "evidencePath": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "details"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "upload": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "unverified",
+                            "passed",
+                            "failed",
+                            "not-applicable"
+                          ]
+                        },
+                        "details": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "evidencePath": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "details"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "boardId",
+                    "platform",
+                    "coderonVersionRange",
+                    "compile",
+                    "upload"
+                  ],
+                  "additionalProperties": false
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "requirements",
+              "support"
+            ],
+            "additionalProperties": false
+          },
+          "descriptionPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "imagePaths": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "package": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "format": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sizeBytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "format",
+              "sizeBytes",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "license": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "enum": [
+                  "undecided",
+                  "declared"
+                ]
+              },
+              "identifier": {
+                "type": "string",
+                "minLength": 1
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "status"
+            ],
+            "additionalProperties": false
+          },
+          "validation": {
+            "type": "object",
+            "properties": {
+              "build": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "unverified",
+                      "passed",
+                      "failed",
+                      "not-applicable"
+                    ]
+                  },
+                  "details": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "evidencePath": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "details"
+                ],
+                "additionalProperties": false
+              },
+              "hardware": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "unverified",
+                      "passed",
+                      "failed",
+                      "not-applicable"
+                    ]
+                  },
+                  "details": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "evidencePath": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "details"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "build",
+              "hardware"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "summary",
+          "topic",
+          "tags",
+          "difficulty",
+          "version",
+          "language",
+          "kind",
+          "compatibleBoards",
+          "hardware",
+          "libraries",
+          "coderon",
+          "descriptionPath",
+          "imagePaths",
+          "package",
+          "license",
+          "validation"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "examples"
+  ],
+  "additionalProperties": false
+}
