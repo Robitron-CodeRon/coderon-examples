@@ -1,0 +1,38 @@
+# Doğrulama kaydı — NEXTRON LED örneği
+
+Tarih: 20 Ekim 2026. Yerel CodeRon PC 1.33.0 / Android 1.23 kaynaklarıyla kontrol edildi.
+
+## Geçen kontroller
+
+- `.ron` içindeki `source` ve ana dosya, gerçek `NextronLed.ino` ile birebir aynı.
+- Aday katalog girdisi uygulamanın gerçek katalog doğrulayıcısından geçti; boyut ve SHA-256 gerçek dosyadan hesaplandı.
+- PC ve Android ortak örnek proje ayrıştırıcısı dosyaları, NEXTRON modelini, OTA profilini ve `free` çalışma türünü kabul etti.
+- Android'in mevcut `mobile.js:validateRon` işlevi gerçek paketle çalıştırıldı ve dosya/ayarlar korundu.
+- Gerçek PC `prepareService` işlevi NEXTRON servis korumasını ve LED API'sini ekledi; kaynak dosya değiştirilmedi, `NX_TACTICS 0` üretildi.
+- Gerçek Android `ProjectSource`, `SketchSource`, `OfflineCompiler`, `Esp32Image` Java kaynakları JVM'de derlendi. `ProjectSource.prepare` gerçek örnekle çalıştırıldı; API, robot hook'ları, `NX_TACTICS 0` ve özgün kaynağın korunması kontrol edildi.
+- Kaynakta motor hareketi/doğrudan pin yazımı veya `delay()` çağrısı bulunmadığı; motor durdurma çağrısı bulunduğu denetlendi.
+
+Komutlar, `coderon-examples` klasöründen:
+
+```text
+node tools/verify-led-example.cjs
+python tools/verify-led-android.py
+```
+
+Bu araçlar yerel PC/Android kaynaklarını yan yana bekler. GitHub CI'da tek başına uygulama kaynaklarının yerini tutmaz.
+
+## Kullanıcı tarafından bildirilen gerçek kart sonucu
+
+20 Ekim 2026 tarihli bu oturumda kullanıcı önce **“derleme tammalandı dedi”**, ardından karta yükleme denemesi sonrasında **“kırmızı yeşil mavi sırayla yanıyor yani işlem başarılı”** bilgisini verdi. Aynı mesajın tekrar gönderilmesi ikinci bir bağımsız test olarak sayılmadı.
+
+Bu bildirim NEXTRON LED örneğinin kullanıcı tarafından başarılı derlendiği ve gerçek kartta kırmızı/yeşil/mavi döngüsünün görüldüğü şeklinde kaydedildi. Karta yükleme, bu çalışma sonucuyla kullanıcı tarafından doğrulanmış kabul edilir; USB/Bluetooth yöntemi belirtilmedi.
+
+PC mi Android mi kullanıldığı, uygulama sürümü, kart revizyonu, derleme günlüğü, yüklenen ikili özeti ve test videosu alınmadı. Kapalı aşaması, 750 ms süre ölçümü, güç kesip açma ve iki platformda ayrı derleme/yükleme ayrıca doğrulanmadı. Ajan fiziksel karta erişmedi; kanıt kullanıcının bu sohbetteki bildirimidir.
+
+Bu nedenle genel katalog `build` / `hardware` sonuçları kullanıcı bildirimiyle `passed`; NEXTRON uyumluluğu bu RGB davranışı için `verified` olarak güncellendi. Platforma özel PC/Android `compile` / `upload` durumları `unverified` kaldı.
+
+## Yapılmayanlar ve yayın durumu
+
+Ajan tarafından tam ESP32 firmware derlemesi ve bağlama veya fiziksel kart testi yapılmadı. Yerel Java kaynak hazırlama testleri bunların yerine geçmez. Kullanıcının yukarıdaki gerçek kart sonucu bu yerel kontrollerden ayrı tutulur.
+
+Kullanıcı bu örnek için MIT lisansını seçti; örnek klasörüne `LICENSE` ve `.ron` içindeki dosyalara aynı metni taşıyan `LICENSE.txt` eklendi. LED `.ino` kodu ve davranışı değiştirilmedi. `.ron` paket boyutu/SHA-256 özeti lisans dosyası eklendiği için yeniden hesaplandı. Kullanıcının önceki kart bildirimi aynı LED kaynak koduna aittir; yeni ikili için ayrı fiziksel test iddiası yoktur. Canlı katalog ve uzak GitHub deposu henüz değiştirilmedi. Yayımlanmamış 1.0.0 adayının lisans/paket metadatası güncellendi.

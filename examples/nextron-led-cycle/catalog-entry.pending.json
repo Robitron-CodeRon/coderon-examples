@@ -1,0 +1,97 @@
+{
+  "id": "nextron-led-cycle",
+  "title": "NEXTRON RGB LED renk döngüsü",
+  "summary": "Dahili RGB LED'i millis() ile kırmızı, yeşil, mavi ve kapalı durumları arasında değiştirir. Motor hareket komutu vermez.",
+  "topic": "LED ve zamanlama",
+  "tags": [
+    "nextron",
+    "rgb",
+    "millis",
+    "başlangıç"
+  ],
+  "difficulty": "beginner",
+  "version": "1.0.0",
+  "language": "tr",
+  "kind": "hardware",
+  "compatibleBoards": [
+    {
+      "id": "nextron",
+      "name": "NEXTRON",
+      "status": "verified",
+      "notes": "User reported successful NEXTRON RGB sequence (red/green/blue). Platform and board revision not specified; see verification.md."
+    }
+  ],
+  "hardware": [
+    {
+      "name": "NEXTRON kartı",
+      "quantity": 1,
+      "notes": "Dahili RGB LED kullanılır. Harici LED/pin bağlantısı yoktur; kartın normal beslemesini kullanın."
+    }
+  ],
+  "libraries": [],
+  "coderon": {
+    "requirements": [
+      {
+        "platform": "pc",
+        "versionRange": ">=1.33.0"
+      },
+      {
+        "platform": "android",
+        "versionRange": ">=1.23"
+      }
+    ],
+    "support": [
+      {
+        "boardId": "nextron",
+        "platform": "pc",
+        "coderonVersionRange": ">=1.33.0",
+        "compile": {
+          "status": "unverified",
+          "details": "Successful compile reported by user, but platform not specified; no separate platform acceptance."
+        },
+        "upload": {
+          "status": "unverified",
+          "details": "Card operation after upload reported by user, but platform and upload method not specified."
+        }
+      },
+      {
+        "boardId": "nextron",
+        "platform": "android",
+        "coderonVersionRange": ">=1.23",
+        "compile": {
+          "status": "unverified",
+          "details": "Successful compile reported by user, but platform not specified; no separate platform acceptance."
+        },
+        "upload": {
+          "status": "unverified",
+          "details": "Card operation after upload reported by user, but platform and upload method not specified."
+        }
+      }
+    ]
+  },
+  "descriptionPath": "examples/nextron-led-cycle/README.md",
+  "imagePaths": [],
+  "package": {
+    "path": "examples/nextron-led-cycle/NextronLed.ron",
+    "format": "coderon-ron-json-v1",
+    "sizeBytes": 4033,
+    "sha256": "bcb2b2d568fd2957e841439b096749d09bf61449c4cc22b42664f9e220bcd97e"
+  },
+  "license": {
+    "status": "declared",
+    "identifier": "MIT",
+    "path": "examples/nextron-led-cycle/LICENSE"
+  },
+  "validation": {
+    "build": {
+      "status": "passed",
+      "details": "User reported compilation completed successfully; PC/Android not specified. Agent did not run the ESP32 compiler.",
+      "evidencePath": "examples/nextron-led-cycle/verification.md"
+    },
+    "hardware": {
+      "status": "passed",
+      "details": "User reported red, green and blue lighting sequentially on the card after upload. Off phase and timing not measured.",
+      "evidencePath": "examples/nextron-led-cycle/verification.md"
+    }
+  }
+}

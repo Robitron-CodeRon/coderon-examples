@@ -1,0 +1,21 @@
+{
+  "format": "CodeRon",
+  "schema": 1,
+  "id": "template-nextron-led-cycle-v1",
+  "runtimeId": "template-nextron-led-cycle-v1",
+  "name": "NextronLed",
+  "target": "NEXTRON-ESP32",
+  "product": "NEXTRON",
+  "boardProfile": "NEXTRON_OTA",
+  "fqbn": "esp32:esp32:esp32:PartitionScheme=min_spiffs",
+  "runtime": "free",
+  "linePid": false,
+  "entry": "NextronLed.ino",
+  "source": "// CodeRon - NEXTRON: dahili RGB LED renk dongusu.\n// NEXTRON OTA / Serbest kod profiliyle derleyin.\n// CodeRonBoard.h, CodeRon servis derleyicisi tarafindan saglanir.\n#include <Arduino.h>\n#include \"CodeRonBoard.h\"\n\nconstexpr uint32_t COLOR_INTERVAL_MS = 750;\nconstexpr uint8_t LED_LEVEL = 32;\nuint32_t lastLedChange = 0;\nuint8_t ledPhase = 3;\n\nvoid robotSetup() {\n  nextronStop();\n  nextronLed(0, 0, 0);\n  ledPhase = 3;\n  lastLedChange = millis();\n}\n\nbool robotCanRun() {\n  // LED orneginin calismasina izin verir; motor hareketi baslatmaz.\n  return true;\n}\n\nbool robotSafety() {\n  return true;\n}\n\nvoid robotLoop() {\n  // Bu ornek motor hareket komutu vermez.\n  nextronStop();\n  const uint32_t now = millis();\n  if (uint32_t(now - lastLedChange) < COLOR_INTERVAL_MS) {\n    return;\n  }\n  lastLedChange = now;\n  ledPhase = (ledPhase + 1) % 4;\n\n  switch (ledPhase) {\n    case 0:\n      nextronLed(LED_LEVEL, 0, 0);  // Kirmizi\n      break;\n    case 1:\n      nextronLed(0, LED_LEVEL, 0);  // Yesil\n      break;\n    case 2:\n      nextronLed(0, 0, LED_LEVEL);  // Mavi\n      break;\n    default:\n      nextronLed(0, 0, 0);          // Kapali\n      break;\n  }\n}\n",
+  "files": {
+    "NextronLed.ino": "// CodeRon - NEXTRON: dahili RGB LED renk dongusu.\n// NEXTRON OTA / Serbest kod profiliyle derleyin.\n// CodeRonBoard.h, CodeRon servis derleyicisi tarafindan saglanir.\n#include <Arduino.h>\n#include \"CodeRonBoard.h\"\n\nconstexpr uint32_t COLOR_INTERVAL_MS = 750;\nconstexpr uint8_t LED_LEVEL = 32;\nuint32_t lastLedChange = 0;\nuint8_t ledPhase = 3;\n\nvoid robotSetup() {\n  nextronStop();\n  nextronLed(0, 0, 0);\n  ledPhase = 3;\n  lastLedChange = millis();\n}\n\nbool robotCanRun() {\n  // LED orneginin calismasina izin verir; motor hareketi baslatmaz.\n  return true;\n}\n\nbool robotSafety() {\n  return true;\n}\n\nvoid robotLoop() {\n  // Bu ornek motor hareket komutu vermez.\n  nextronStop();\n  const uint32_t now = millis();\n  if (uint32_t(now - lastLedChange) < COLOR_INTERVAL_MS) {\n    return;\n  }\n  lastLedChange = now;\n  ledPhase = (ledPhase + 1) % 4;\n\n  switch (ledPhase) {\n    case 0:\n      nextronLed(LED_LEVEL, 0, 0);  // Kirmizi\n      break;\n    case 1:\n      nextronLed(0, LED_LEVEL, 0);  // Yesil\n      break;\n    case 2:\n      nextronLed(0, 0, LED_LEVEL);  // Mavi\n      break;\n    default:\n      nextronLed(0, 0, 0);          // Kapali\n      break;\n  }\n}\n",
+    "LICENSE.txt": "MIT License\n\nCopyright (c) 2026 Robitron Robot Teknolojileri\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "tactics": {},
+  "sequences": {}
+}
