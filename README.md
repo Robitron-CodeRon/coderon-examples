@@ -1,22 +1,35 @@
-# CodeRon örnek proje kütüphanesi
+# CodeRon örnek projeleri
 
-Bu depo, CodeRon içinde listelenmesi planlanan örneklerin açıklamalarını, kaynaklarını ve indirilebilir paketlerini GitHub üzerinden yönetmek içindir. CodeRon PC/Android uygulama kaynaklarını içermez; uygulama entegrasyonu henüz yapılmamıştır. İlk katalog boştur.
+Kartına ne yaptırabileceğini örneklerle öğren. Hazır projeyi aç, kodunu incele, küçük değişiklikler yap ve kendi kartında dene. Yeni başladıysan **Başlangıç** seviyesindeki örneklerden başlayabilirsin.
 
-Hedef akışta kullanıcı GitHub hesabı olmadan açıklamaları okuyabilmeli ve yayımlanmış paketleri indirebilmelidir. “Projelerime ekle”, kullanıcının proje alanında bağımsız ve düzenlenebilir bir kopya oluşturmalıdır. Sonraki katalog güncellemeleri bu kopyayı ezmemelidir. Bu davranışın uygulamada geliştirilmesi ve anonim erişimin gerçek dağıtım adresleriyle sınanması gerekir.
+## Uygulamada nasıl açarım?
 
-Genel Arduino/C++ kod örnekleri belirli donanım gerektirmeyebilir. Donanım projeleri ise gerekli parçaları, doğrulanmış bağlantıları ve sınırları açıklamalıdır. NEXTRON, SPEEDRON ve diğer kartlar aynı katalog modelinde yer alabilir; bir örnek birden fazla kartla uyumlu olabilir. Donanım uyumluluğu, CodeRon’un ilgili platformda o karta derleme/yükleme desteğini kanıtlamaz. Doğrulanmamış destek açıkça işaretlenir.
+1. PC veya Android CodeRon'da **Örnek Projeler** ekranını aç.
+2. **Yenile** ile yayımlanan örnekleri getir ve bir örneği seç.
+3. Hangi kartın ve parçaların gerektiğini oku. Her örnek bütün kartlara uygun değildir.
+4. Örneği indir ve **Projelerime ekle** ile kendi kopyanı oluştur.
+5. Kartı ve profili kontrol et. Sonra **Derle** ve **Karta yükle** adımlarını kendin başlat.
 
-## Düzen
+PC **1.35.0** / Android **1.25** ve sonraki sürümlerde indirdiğin örnekte **Projeyi aç**, yeni sürüm gelirse **Güncelle** düğmesi görünür. Güncelleme yeni bir proje kopyası oluşturur; kendi düzenlediğin eski proje korunur. **Kayıtlı örneği sil** ile indirme kaydını kaldırabilirsin. Yerel proje kopyasını da silmek istersen silme ekranında ayrıca seçmelisin.
 
-- `catalog.json`: sürümlü, şu anda boş örnek listesi.
-- `catalog.schema.json`: JSON Schema 2020-12 taslağı.
-- `examples/<id>/`: her örneğin açıklaması, kaynakları, varsa görselleri ve gerçek paketi.
-- `templates/PROJECT_README.tr.md`: boş proje açıklama şablonu; indirilebilir örnek değildir.
-- `docs/catalog-contract.md`: uygulamayla görüşülecek katalog sözleşmesi.
-- `CONTRIBUTING.md`: örnek ekleme ve doğrulama adımları.
-- `tools/validate_catalog.py`, `tests/`: katalog doğrulaması ve testleri.
+Örneği açmak kartına kendiliğinden komut göndermez. Önceden indirilmiş içerik çevrimdışı kullanılabilir; karta yükleme için normal bağlantı koşulları gerekir. Örnekleri okumak ve yerelde çalışmak için CodeRon veya GitHub hesabı gerekmez.
 
-## Yerel doğrulama
+## İlk örnek: NEXTRON'un ışığını renk renk yak
+
+[NEXTRON LED örneğinin anlatımını oku](examples/nextron-led-cycle/README.md).
+
+Kartın kendi ışığı kırmızı, yeşil, mavi yanar; kısa süre söner ve tekrar başlar. Harici LED veya ek kablo gerekmez. Kaynakta `//` işaretinden sonraki Türkçe yorumlar satırların ne yaptığını anlatır. Kullanıcı kırmızı, yeşil ve mavi sırasını gerçek NEXTRON kartında gördüğünü bildirdi; ayrıntılar ve doğrulanmamış kısımlar [test kaydında](examples/nextron-led-cycle/verification.md).
+
+Yeni CodeRon sürümleri örneği kart görselindeki LED gösterimi ve satır açıklamalarıyla anlatır. Bu gösterim bağlı kartın canlı görüntüsü değildir; kodu değiştirdiğinde otomatik değişmez. Gereken uygulama sürümü örneğin ayrıntısında belirtilir.
+
+## Kart ve lisans bilgisi
+
+Örnekler farklı kartlar için hazırlanabilir. Belirtilen kartı, profilini ve bağlantıları kullan; bilinmeyen pinleri tahmin etme. NEXTRON LED örneğinin lisansı [MIT](examples/nextron-led-cycle/LICENSE)'dir. Bu izin yalnız o örnek ve beraberindeki metinler içindir. Başka örneklerin lisanslarını ayrıca kontrol et; CodeRon uygulaması ve firmware'i için genel bir lisans verilmez.
+
+<details>
+<summary>Örnek hazırlamak ve katkı vermek isteyenler için</summary>
+
+[Katkı yönergeleri](CONTRIBUTING.md) ve [katalog sözleşmesi](docs/catalog-contract.md), örnek ekleme biçimini açıklar. `catalog.json` uygulamanın okuduğu listedir; `catalog.schema.json` metadata şemasıdır. Gerçek `.ron` paketi, kullanım açıklaması, lisans ve doğrulama kaydı birlikte hazırlanmalıdır.
 
 Python 3.12 ile:
 
@@ -25,10 +38,10 @@ python -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
 .venv/bin/python tools/validate_catalog.py
 .venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python tools/validate_presentation.py
+.venv/bin/python tools/test_presentation.py
 ```
 
-Doğrulayıcı yalnız katalog ve dosya bütünlüğünü denetler; proje kodunu çalıştırmaz, paket açmaz, derlemez veya karta yüklemez. `.ron` biçimi gerçek uygulama geliştirme oturumundan sağlanacaktır; bu depo biçim tanımlamaz.
+Windows'ta `.venv/bin/python` yerine `.venv\Scripts\python` kullanılır. Bu kontroller kaynak kodu derlemez veya karta yüklemez. Test edilmemiş donanım desteğini doğrulanmış gibi yazma.
 
-## Lisans
-
-Henüz depo lisansı seçilmedi. Her gerçek örneğin kodu, görselleri ve bağımlılıklarının paylaşım/dağıtım hakları ayrıca doğrulanmalıdır. Lisans kararı verilene kadar içerikleri yeniden kullanma izni varsaymayın.
+</details>
