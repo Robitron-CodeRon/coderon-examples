@@ -45,3 +45,10 @@ Kullanıcı önceki yayından sonra örneğin uygulamada listelendiğini bildird
 Yerel kontroller: gerçek PC/Android proje ayrıştırma ve servis kaynak hazırlama; 52 satırın birebir kaynak eşleşmesi, kılavuz/paket SHA-256 ve boyut kontrolü, hatalı metadata reddi, güvenli metin gösterimi, oynat/durdur/adım/gizlenme/hareket azaltma testleri. Beş Python eğitim metadatası testi geçti. Bunlar gerçek uygulama görsel kabulü veya firmware derlemesi değildir. PC 1.34.0 / Android 1.24 kod36 yeni anlatım kaynaklarını içerir.
 
 GitHub 1.0.1 yayını henüz yerelde yapılmadı. Katalog şemasına isteğe bağlı preview/codeGuide alanları eklenerek mevcut kayıt yükseltilmelidir. Yerelde jsonschema bağımlılığı bulunmadığından deponun eski dokuz şema testi bu oturumda çalıştırılmadı; web Codex yayın öncesi çalıştırmalıdır.
+## 20 Ekim 2026 — 1.0.2 editör açıklamaları (en güncel)
+
+Kullanıcı açıklamaları editörde de istedi. Her dolu `.ino` satırına Türkçe `//` yorumu eklendi; aynı içerik `.ron` kaynaklarına ve JSON kılavuzuna işlendi. MIT ve diğer proje ayarları korundu. Yorumlar çıkarılıp boşluklar normalize edildiğinde çalıştırılan kodun SHA-256 değeri, önceki gerçek kartta denenmiş 1.0.0 kaynağıyla aynıdır: `bc40b2d2d314862eef080393cb47691323c0c6c311fad86b432122f8c6cbcff7`. Test artık her dolu satırın yorum içermesini ve bu özeti denetler. Bu, yeni firmware derlemesi veya fiziksel kart denemesi değildir.
+
+Paket ve kılavuz boyut/SHA-256 değerleri yeniden üretildi. Yerel PC/Android gerçek ayrıştırma/servis kaynak hazırlama ve kılavuz/satır eşleşme testleri geçti. 1.0.1 bölümündeki kaynak değişmedi ifadesi önceki aday içindir; 1.0.2'de yorum metinleri değişir, çalıştırılan komutlar değişmez. GitHub 1.0.2 yayını yerelde yapılmadı.
+
+Mevcut kullanıcı projeleri otomatik değiştirilmez. Yeni yorumlar yalnız güncel örnek `.ron` dosyası açıldığında veya katalogda 1.0.2 yayımlandıktan sonra yeni bağımsız kopyaya eklenir. Kullanıcının sonradan yazdığı koda otomatik açıklama üretilmez.

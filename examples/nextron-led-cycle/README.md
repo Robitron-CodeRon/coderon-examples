@@ -33,6 +33,12 @@ Her adım yaklaşık **0,75 saniye** sürer. Sayfadaki animasyon bu sırayı anl
 
 Bu örneğin kırmızı, yeşil ve mavi sırası NEXTRON kartında denenmiş ve çalıştığı bildirilmiştir.
 
+## Kodu editörde nasıl okuyacağım?
+
+Örneği **Projelerime ekle** ile açtığında, kodun her dolu satırında `//` işaretinden sonra Türkçe açıklama görürsün. `//` sonrasındaki yazılar kartın çalıştırdığı komutlar değildir; sana o satırın ne yaptığını anlatır. Editörde satır numaralarını izleyerek kodu baştan sona okuyabilirsin. Açıklama uzun olduğunda satırın devamına bak.
+
+Örneğin `nextronStop(); // Motorları durdurur.` satırında soldaki komut çalışır, sağındaki yazı açıklamadır. Örnek sayfasındaki **Kodu satır satır öğren** bölümünde de kod ve açıklama ayrı sütunlarda gösterilir. Kendi yeni yazdığın satırlara otomatik açıklama eklenmez.
+
 ## Hızı veya parlaklığı değiştirebilir miyim?
 
 Evet. Projedeki `NextronLed.ino` dosyasını aç. Başlangıçta şu iki satırı göreceksin:

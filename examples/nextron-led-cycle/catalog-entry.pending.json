@@ -10,7 +10,7 @@
     "başlangıç"
   ],
   "difficulty": "beginner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "language": "tr",
   "kind": "hardware",
   "compatibleBoards": [
@@ -74,8 +74,8 @@
   "package": {
     "path": "examples/nextron-led-cycle/NextronLed.ron",
     "format": "coderon-ron-json-v1",
-    "sizeBytes": 4033,
-    "sha256": "bcb2b2d568fd2957e841439b096749d09bf61449c4cc22b42664f9e220bcd97e"
+    "sizeBytes": 10682,
+    "sha256": "f6f24a7390744ca442344ce88020938bf463b4f5d36bd187211f834d8ffd3f9c"
   },
   "license": {
     "status": "declared",
@@ -123,7 +123,7 @@
   },
   "codeGuide": {
     "path": "examples/nextron-led-cycle/code-guide.json",
-    "sizeBytes": 5422,
-    "sha256": "6053483050798c35f4c80c2c4288405b0271f8342be703fe8f2b4554055513bb"
+    "sizeBytes": 8661,
+    "sha256": "05323ae415421f2f4cc3865813082d23c310e7d7ec62d2ab1b7a8111da18a018"
   }
 }
