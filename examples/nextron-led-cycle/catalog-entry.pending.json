@@ -1,7 +1,7 @@
 {
   "id": "nextron-led-cycle",
-  "title": "NEXTRON RGB LED renk döngüsü",
-  "summary": "Dahili RGB LED'i millis() ile kırmızı, yeşil, mavi ve kapalı durumları arasında değiştirir. Motor hareket komutu vermez.",
+  "title": "NEXTRON: kartın ışığını renk renk yak",
+  "summary": "Kartın kendi ışığı kırmızı, yeşil, mavi yanar ve kısa süre kapanır. Ek parça gerekmez. Adım adım anlatım ve satır satır kod açıklaması içerir.",
   "topic": "LED ve zamanlama",
   "tags": [
     "nextron",
@@ -10,7 +10,7 @@
     "başlangıç"
   ],
   "difficulty": "beginner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "language": "tr",
   "kind": "hardware",
   "compatibleBoards": [
@@ -18,7 +18,7 @@
       "id": "nextron",
       "name": "NEXTRON",
       "status": "verified",
-      "notes": "User reported successful NEXTRON RGB sequence (red/green/blue). Platform and board revision not specified; see verification.md."
+      "notes": "Kullanıcı kartta kırmızı, yeşil ve mavinin sırayla yandığını bildirdi. Kullanılan PC/Android ve kart sürümü ayrıca belirtilmedi."
     }
   ],
   "hardware": [
@@ -33,38 +33,38 @@
     "requirements": [
       {
         "platform": "pc",
-        "versionRange": ">=1.33.0"
+        "versionRange": ">=1.34.0"
       },
       {
         "platform": "android",
-        "versionRange": ">=1.23"
+        "versionRange": ">=1.24"
       }
     ],
     "support": [
       {
         "boardId": "nextron",
         "platform": "pc",
-        "coderonVersionRange": ">=1.33.0",
+        "coderonVersionRange": ">=1.34.0",
         "compile": {
           "status": "unverified",
-          "details": "Successful compile reported by user, but platform not specified; no separate platform acceptance."
+          "details": "Derleme başarılı bildirildi; kullanılan platform belirtilmediği için bu platform ayrıca doğrulanmadı."
         },
         "upload": {
           "status": "unverified",
-          "details": "Card operation after upload reported by user, but platform and upload method not specified."
+          "details": "Yüklemeden sonra kartın çalıştığı bildirildi; platform ve yükleme yöntemi belirtilmedi."
         }
       },
       {
         "boardId": "nextron",
         "platform": "android",
-        "coderonVersionRange": ">=1.23",
+        "coderonVersionRange": ">=1.24",
         "compile": {
           "status": "unverified",
-          "details": "Successful compile reported by user, but platform not specified; no separate platform acceptance."
+          "details": "Derleme başarılı bildirildi; kullanılan platform belirtilmediği için bu platform ayrıca doğrulanmadı."
         },
         "upload": {
           "status": "unverified",
-          "details": "Card operation after upload reported by user, but platform and upload method not specified."
+          "details": "Yüklemeden sonra kartın çalıştığı bildirildi; platform ve yükleme yöntemi belirtilmedi."
         }
       }
     ]
@@ -85,13 +85,45 @@
   "validation": {
     "build": {
       "status": "passed",
-      "details": "User reported compilation completed successfully; PC/Android not specified. Agent did not run the ESP32 compiler.",
+      "details": "Kullanıcı derlemenin tamamlandığını bildirdi. PC/Android belirtilmedi; bu güncellemede firmware derlenmedi.",
       "evidencePath": "examples/nextron-led-cycle/verification.md"
     },
     "hardware": {
       "status": "passed",
-      "details": "User reported red, green and blue lighting sequentially on the card after upload. Off phase and timing not measured.",
+      "details": "Kullanıcı kartta kırmızı, yeşil ve maviyi doğruladı. Kapalı aşama ve süre ayrıca ölçülmedi.",
       "evidencePath": "examples/nextron-led-cycle/verification.md"
     }
+  },
+  "preview": {
+    "type": "led-sequence",
+    "board": "NEXTRON",
+    "caption": "Işık her 0,75 saniyede renk değiştirir. Aşağıdaki düğmelerle renkleri tek tek de seçebilirsin.",
+    "steps": [
+      {
+        "label": "Kırmızı",
+        "color": "#ff0000",
+        "durationMs": 750
+      },
+      {
+        "label": "Yeşil",
+        "color": "#00ff00",
+        "durationMs": 750
+      },
+      {
+        "label": "Mavi",
+        "color": "#0000ff",
+        "durationMs": 750
+      },
+      {
+        "label": "Kapalı",
+        "color": "#000000",
+        "durationMs": 750
+      }
+    ]
+  },
+  "codeGuide": {
+    "path": "examples/nextron-led-cycle/code-guide.json",
+    "sizeBytes": 5422,
+    "sha256": "6053483050798c35f4c80c2c4288405b0271f8342be703fe8f2b4554055513bb"
   }
 }

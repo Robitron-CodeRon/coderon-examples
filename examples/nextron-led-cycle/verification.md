@@ -36,3 +36,12 @@ Bu nedenle genel katalog `build` / `hardware` sonuçları kullanıcı bildirimiy
 Ajan tarafından tam ESP32 firmware derlemesi ve bağlama veya fiziksel kart testi yapılmadı. Yerel Java kaynak hazırlama testleri bunların yerine geçmez. Kullanıcının yukarıdaki gerçek kart sonucu bu yerel kontrollerden ayrı tutulur.
 
 Kullanıcı bu örnek için MIT lisansını seçti; örnek klasörüne `LICENSE` ve `.ron` içindeki dosyalara aynı metni taşıyan `LICENSE.txt` eklendi. LED `.ino` kodu ve davranışı değiştirilmedi. `.ron` paket boyutu/SHA-256 özeti lisans dosyası eklendiği için yeniden hesaplandı. Kullanıcının önceki kart bildirimi aynı LED kaynak koduna aittir; yeni ikili için ayrı fiziksel test iddiası yoktur. Canlı katalog ve uzak GitHub deposu henüz değiştirilmedi. Yayımlanmamış 1.0.0 adayının lisans/paket metadatası güncellendi.
+## 20 Ekim 2026 — 1.0.1 anlatım güncellemesi (güncel)
+
+Kullanıcı önceki yayından sonra örneğin uygulamada listelendiğini bildirdi. Platform ve yayımlanmış commit yerelde doğrulanmadı. Yukarıdaki henüz yayımlanmadı ifadeleri eski 1.0.0 adayını anlatır. Yerel catalog.json boş tarihsel kopyadır; canlı kataloğun yerine geçmez.
+
+1.0.1 yalnız açıklama ve eğitim metadatasını yeniler: başlangıç seviyesinde README, kart görseli üzerindeki LED animasyon tanımı ve kaynakla eşleşen 52 satırlık açıklama kılavuzu. `.ino`, MIT'li `.ron` ve LICENSE.txt değişmedi. Animasyon fiziksel kart görüntüsü veya telemetri değildir. Yeni firmware/donanım testi yapılmadı; önceki kullanıcı bildirimi aynı kaynak için korunur.
+
+Yerel kontroller: gerçek PC/Android proje ayrıştırma ve servis kaynak hazırlama; 52 satırın birebir kaynak eşleşmesi, kılavuz/paket SHA-256 ve boyut kontrolü, hatalı metadata reddi, güvenli metin gösterimi, oynat/durdur/adım/gizlenme/hareket azaltma testleri. Beş Python eğitim metadatası testi geçti. Bunlar gerçek uygulama görsel kabulü veya firmware derlemesi değildir. PC 1.34.0 / Android 1.24 kod36 yeni anlatım kaynaklarını içerir.
+
+GitHub 1.0.1 yayını henüz yerelde yapılmadı. Katalog şemasına isteğe bağlı preview/codeGuide alanları eklenerek mevcut kayıt yükseltilmelidir. Yerelde jsonschema bağımlılığı bulunmadığından deponun eski dokuz şema testi bu oturumda çalıştırılmadı; web Codex yayın öncesi çalıştırmalıdır.

@@ -386,6 +386,85 @@
               "hardware"
             ],
             "additionalProperties": false
+          },
+          "preview": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "board",
+              "steps"
+            ],
+            "properties": {
+              "type": {
+                "const": "led-sequence"
+              },
+              "board": {
+                "enum": [
+                  "NEXTRON",
+                  "GENERIC"
+                ]
+              },
+              "caption": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "steps": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 16,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "label",
+                    "color",
+                    "durationMs"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[a-fA-F0-9]{6}$"
+                    },
+                    "durationMs": {
+                      "type": "integer",
+                      "minimum": 200,
+                      "maximum": 10000
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "codeGuide": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sizeBytes",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sizeBytes": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 128000
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
           }
         },
         "required": [

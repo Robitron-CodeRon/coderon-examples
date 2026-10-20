@@ -53,3 +53,11 @@ Tüm dosya yolları **depo köküne** görelidir; katalog dosyasının veya örn
 ## Açık kararlar
 
 `.ron` biçimi ve paket üreticisi; desteklenen gerçek kart kimlikleri; PC/Android minimum sürümleri ve doğrulama matrisi; sürüm aralığı grameri; dağıtım/önbellek politikası; katalog güven modeli; depo/örnek/görsel lisansları uygulama geliştirme oturumunda kesinleştirilmelidir. Bu taslak hiçbir kart API'si, pin bağlantısı veya doğrulanmış destek ilan etmez.
+
+## İsteğe bağlı eğitim sunumu — 20 Ekim 2026
+
+`preview`: `type=led-sequence`, `board=NEXTRON|GENERIC`, isteğe bağlı caption (en fazla 240 karakter), 2–16 steps. Her adım label (1–40 karakter), color (#RRGGBB), durationMs (200–10000 tam sayı) içerir; döngü toplamı en fazla 60000 ms. Bu yalnız görsel anlatımdır; donanım komutu değildir. Diğer kartların konumu tahmin edilmez, GENERIC soyut ışık gösterir.
+
+`codeGuide`: güvenli depo yolu path, 1–128000 sizeBytes ve SHA-256 sha256. JSON şema sürümü 1; file ana `.ino` adı, source tam UTF-8 metin, sourceSha256 kaynak özeti, projectSha256 paket özeti, explanations her fiziksel satır için bir metindir. Her dolu satırın açıklaması gerekir; boş satırınki boş olabilir. 1000 satır ve açıklama başına 1000 karakter üst sınırı vardır. source paket files[file] ile birebir aynı olmalıdır. Kullanıcının değiştirdiği kod için otomatik açıklama anlamına gelmez. İstemci tüm metni kaçışlayarak gösterir; HTML/kod çalıştırmaz.
+
+Alanlar isteğe bağlıdır; mevcut örnekler değişmeden geçerlidir. Yayın şeması ve `tools/validate_presentation.py` birlikte doğrular. `python tools/test_presentation.py` regresyonları çalıştırır. Yerel aday `--entry examples/nextron-led-cycle/catalog-entry.pending.json` ile canlı katalog değiştirilmeden denetlenebilir.
